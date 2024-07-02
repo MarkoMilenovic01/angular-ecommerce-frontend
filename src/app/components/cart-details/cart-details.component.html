@@ -19,7 +19,35 @@
 
                     <td>
                         <div class="items">
-                            <label for="">Quantity</label> {{tempCartItem.quantity}}
+                            <label for="">Quantity</label> 
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <button (click)="incrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+
+                                <div class="col mx-4">
+                                    {{tempCartItem.quantity}}
+                                </div>
+
+                                <div class="col">
+                                    <button (click)="decrementQuantity(tempCartItem)" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+
+                                <div class="col-8"></div>
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                        <button (click)="remove(tempCartItem)" class="btn btn-primary btn-sm">
+                            Remove
+                        </button>
+                    </div>
                         </div>
                         <p class="my-2">Subtotal : {{tempCartItem.quantity * tempCartItem.unitPrice | currency : 'USD'}}</p>
                     </td>
@@ -30,6 +58,13 @@
                         <p>Total Quantity : {{totalQuantity}}</p>
                         <p>Shipping : FREE</p>
                         <p>Total Price : {{totalPrice | currency: 'USD'}}</p>
+                        <div class="row">
+                            <div class="col-3">
+                        <a routerLink="/checkout" class="btn btn-primary">
+                            Checkout
+                        </a>
+                    </div>
+                    </div>
                     </td>
                 </tr>
             </table>
