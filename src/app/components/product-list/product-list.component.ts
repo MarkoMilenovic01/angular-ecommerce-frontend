@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
 
   products : Product[] = [];
   currentCategoryId: number = 1;
+  currentCategory : string ="";
   searchMode : boolean = false;
   thePageNumber : number = 1;
   thePageSize: number = 5;
@@ -49,8 +50,10 @@ export class ProductListComponent implements OnInit {
 
     if(hasCategoryId){
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+      this.currentCategory = this.route.snapshot.paramMap.get('name')!;
     }else{
       this.currentCategoryId = 1;
+      this.currentCategory = "Books";
     }
 
     this.productService.getProductListByCategoryIdPaginate(this.thePageNumber - 1, this.thePageSize, this.currentCategoryId).subscribe(
