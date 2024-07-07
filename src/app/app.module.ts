@@ -13,9 +13,13 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginStatusComponent } from './components/login-status/login-status.component';
+import { AuthGuard, AuthModule, AuthService } from '@auth0/auth0-angular';
+import { MembersPageComponent } from './components/members-page/members-page.component';
 
 
 const routes : Routes = [
+  {path: 'members', component:MembersPageComponent, canActivate: [AuthGuard]},
   {path: 'checkout', component: CheckoutComponent},
   {path : 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -36,11 +40,20 @@ const routes : Routes = [
     ProductDetailsComponent,
     CartStatusComponent,
     CartDetailsComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    LoginStatusComponent,
+    MembersPageComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
+    AuthModule.forRoot({
+      domain: 'dev-nrmk6vneej72zo3z.eu.auth0.com',
+      clientId: '5pzxJPmZ8BsiK5mIF9yDXs2AUqFAlQTP',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule
