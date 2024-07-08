@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-login-status',
@@ -9,12 +10,17 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class LoginStatusComponent implements OnInit {
 
-  
+  storage : Storage = sessionStorage;  
 
-  constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) { }
+  constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService, private cartService : CartService) { }
 
   ngOnInit(): void {
-   
+   this.auth.user$.subscribe((user) => {
+    if(user && user.email){
+      sessionStorage.setItem('userEmail', user.email);
+      console.log(user.email);
+    }
+   })
   }
 
   
@@ -23,6 +29,7 @@ export class LoginStatusComponent implements OnInit {
   }
 
   logout(){
+    this.cartService.storage.clear();
     this.auth.logout({ logoutParams: { returnTo: document.location.origin } })
   }
 

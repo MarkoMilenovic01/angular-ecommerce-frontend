@@ -6,12 +6,15 @@
        Hello <strong>{{user.name}}</strong>
     </div>
 
-    <button class="au-btn-submit py-2 col-md-3" (click)="logout()">
+    <button class="au-btn-submit py-2 col-md-2" (click)="logout()">
             Log out
     </button>
-    <button routerLink="/members" class="au-btn-submit py-2 col-md-3 mx-2">
+    <button routerLink="/members" class="au-btn-submit py-2 col-md-2 mx-2">
         Member
-    </button>    
+    </button> 
+    <button routerLink="/order-history" class="au-btn-submit py-2 col-md-2 ">
+        Orders
+    </button>   
 </div>
 </ng-container>
 
