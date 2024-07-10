@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
@@ -17,6 +17,7 @@ import { LoginStatusComponent } from './components/login-status/login-status.com
 import { AuthGuard, AuthModule, AuthService } from '@auth0/auth0-angular';
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 const routes : Routes = [
@@ -55,7 +56,7 @@ const routes : Routes = [
       clientId: '5pzxJPmZ8BsiK5mIF9yDXs2AUqFAlQTP',
       authorizationParams: {
         redirect_uri: window.location.origin,
-      },
+      }
     }),
     HttpClientModule,
     NgbModule,

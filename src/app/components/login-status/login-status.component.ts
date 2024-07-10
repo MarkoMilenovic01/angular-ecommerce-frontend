@@ -19,8 +19,11 @@ export class LoginStatusComponent implements OnInit {
     if(user && user.email){
       sessionStorage.setItem('userEmail', user.email);
       console.log(user.email);
+      console.log(this.auth.getAccessTokenWithPopup());
     }
    })
+
+  
   }
 
   

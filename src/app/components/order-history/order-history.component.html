@@ -12,7 +12,7 @@
                         <th width="10%">Date</th>
                     </tr>
                     <tr *ngFor="let tempOrderHistory of orderHistoryList">
-                        <td>{{tempOrderHistory.orderTrackingNumber}}</td>
+                        <td class="py-2 px-2">{{tempOrderHistory.orderTrackingNumber}}</td>
                         <td>{{tempOrderHistory.totalPrice | currency: 'USD'}}</td>
                         <td>{{tempOrderHistory.totalQuantity}}</td>
                         <td>{{tempOrderHistory.dateCreated | date:'medium'}}</td>
